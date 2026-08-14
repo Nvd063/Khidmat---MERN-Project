@@ -2,6 +2,9 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+// Standard secret key match across controller and middleware
+const secretKey = process.env.JWT_SECRET || 'mysecretkey123.env';
+
 // Register User
 export const registerUser = async (req, res) => {
   try {
@@ -43,9 +46,10 @@ export const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    // Token creation using matched secret key
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      process.env.JWT_SECRET || 'secretkey',
+      secretKey,
       { expiresIn: '7d' }
     );
 

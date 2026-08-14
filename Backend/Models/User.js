@@ -9,4 +9,7 @@ const userSchema = new mongoose.Schema({
   avatar: { type: String, default: '' },
 }, { timestamps: true });
 
-export default mongoose.model('User', userSchema);
+// Check lagayein taakh double compilation error na aaye
+const User = mongoose.models.User || mongoose.model('User', userSchema);
+
+export default User;

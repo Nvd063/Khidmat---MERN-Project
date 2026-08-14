@@ -6,7 +6,7 @@ import {
   updateRequestStatus, 
   getMyRequests 
 } from '../controllers/serviceController.js';
-import { protect } from '../middleware/authMiddleware.js';
+import { protect } from '../middlewares/authmiddleware.js';
 
 const router = express.Router();
 

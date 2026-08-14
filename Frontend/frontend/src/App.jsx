@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Providers from './pages/Providers';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from '../components/ProtectedRoute';
+import  AdminDashboard from './pages/AdminDashboard'
 
 function App() {
 
@@ -32,10 +33,22 @@ function App() {
             </ProtectedRoute>
           } 
         />
-      </Routes>
+      
+      <Route 
+        path="/admin/dashboard" 
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } 
+      />
+    </Routes>
+
+      
     </Router>
 </>
   )
 }
+
 
 export default App
